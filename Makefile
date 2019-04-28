@@ -6,6 +6,7 @@ SOURCEDIR =	srcs
 HEADERDIR = includes
 SRCFILES =						\
 			main.cpp			\
+			initWindow.cpp		\
 
 
 
@@ -42,5 +43,8 @@ clean:
 
 fclean: clean
 	rm -f $(BINARY)
+
+run: all
+	./$(BINARY)
 
 re: fclean all

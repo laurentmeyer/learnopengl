@@ -1,9 +1,3 @@
-#version 330 core
-in vec2 fragCoord;
-out vec4 fragColor;
-uniform vec3 iResolution;
-uniform float iTime;
-
 void main()
 {
         // Normalized pixel coordinates (from 0 to 1)

@@ -2,6 +2,9 @@
 #include "ShaderClass.hpp"
 #include <iostream>
 #include <cmath>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 void processInput(GLFWwindow *window)
 {
@@ -20,28 +23,6 @@ GLuint indices[] = {
     0, 1, 3,
     1, 2, 3
 };
-
-// const char *vertexShaderSource = "#version 330 core\n"
-//     "layout (location = 0) in vec3 aPos;\n"
-//     "\n"
-//     "out vec4 fragCoord;\n"
-//     "\n"
-//     "void main()\n"
-//     "{\n"
-//     "gl_Position = vec4(aPos, 1.0);\n"
-//     //"vertexColor = gl_Position;\n"
-//     // "vertexColor = vec4(0.5, 0.0, 0.0, 1.0);\n"
-//     "}";
-
-// const char *fragmentShaderSource = "#version 330 core\n"
-//     "in vec4 fragCoord;\n"
-//     "out vec4 fragColor;\n"
-//     "uniform vec4 ourColor;\n"
-//     "void main()\n"
-//     "{\n"
-//     "   fragColor = ourColor;\n"
-//     "}\n\0";
-
 
 int main() {
 	GLFWwindow *window = initWindow();
@@ -79,10 +60,15 @@ int main() {
 
     // You can unbind the VAO afterwards so other VAO calls won't accidentally modify this VAO, but this rarely happens. Modifying other
     // VAOs requires a call to glBindVertexArray anyways so we generally don't unbind VAOs (nor VBOs) when it's not directly necessary.
-    //glBindVertexArray(0); 
+    //glBindVertexArray(0);
 
+    glm::vec4 vec(1.0f, 0.0f, 0.0f, 1.0f);
+    glm::mat4 trans = glm::mat4(1.0f);
+    trans = glm::translate(trans, glm::vec3(1.0f, 1.0f, 0.0f));
+    vec = trans * vec;
+    std::cout << vec.x << vec.y << vec.z << std::endl;
 
-	while (!glfwWindowShouldClose(window))
+    while (!glfwWindowShouldClose(window))
     {
         // input
         // -----
